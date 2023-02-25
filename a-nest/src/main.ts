@@ -13,7 +13,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3095;
 
   const config = new DocumentBuilder()
     .setTitle('Sleact API')
