@@ -18,6 +18,7 @@ import { Users } from './entities/Users';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
 import { AuthModule } from './auth/auth.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -43,13 +44,14 @@ import { AuthModule } from './auth/auth.module';
       keepConnectionAlive: true, // for hot reloading
       synchronize: false,
       charset: 'utf8mb4',
-      logging: true,
+      logging: process.env.NODE_ENV !== 'production',
     }),
     UsersModule,
     WorkspacesModule,
     ChannelsModule,
     DmsModule,
     AuthModule,
+    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
