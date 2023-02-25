@@ -69,6 +69,6 @@ export class Workspaces {
   @JoinColumn([{ name: 'OwnerId', referencedColumnName: 'id' }])
   Owner: Users;
 
-  //   @ManyToMany(() => Users, (users) => users.Workspaces)
-  //   Members: Users[];
+  @ManyToMany(() => Users, (users) => users.Workspaces)
+  Members: Users[];
 }

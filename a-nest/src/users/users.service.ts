@@ -15,6 +15,13 @@ export class UsersService {
     @InjectRepository(Users)
     private usersRepository: Repository<Users>,
   ) {}
+  async findByEmail(email: string) {
+    return this.usersRepository.findOne({
+      where: { email },
+      select: ['id', 'email', 'password'],
+    });
+  }
+
   async join(email: string, nickname: string, password: string) {
     // Validation
     // if (!email) throw new BadRequestException('이메일이 없네요');

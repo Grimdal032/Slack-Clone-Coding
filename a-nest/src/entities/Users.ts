@@ -91,7 +91,7 @@ export class Users {
   @OneToMany(() => Workspaces, (workspaces) => workspaces.Owner)
   OwnedWorkspaces: Workspaces[];
 
-  //@ManyToMany(() => Workspaces, (workspaces) => workspaces.Members)
+  @ManyToMany(() => Workspaces, (workspaces) => workspaces.Members)
   @JoinTable({
     name: 'workspacemembers',
     joinColumn: {
