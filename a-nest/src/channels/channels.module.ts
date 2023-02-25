@@ -5,10 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChannelMembers } from 'src/entities/ChannelMembers';
 import { Channels } from 'src/entities/Channels';
 import { Users } from 'src/entities/Users';
-import { WorkspaceMembers } from 'src/entities/WorkspaceMembers';
 import { Workspaces } from 'src/entities/Workspaces';
 import { ChannelChats } from 'src/entities/ChannelChats';
 import { EventsModule } from 'src/events/events.module';
+import { WorkspaceMembers } from 'src/entities/WorkspaceMembers';
 
 @Module({
   imports: [
@@ -19,8 +19,8 @@ import { EventsModule } from 'src/events/events.module';
       ChannelChats,
       Workspaces,
       WorkspaceMembers,
-      EventsModule,
     ]),
+    EventsModule,
   ],
   providers: [ChannelsService],
   controllers: [ChannelsController],

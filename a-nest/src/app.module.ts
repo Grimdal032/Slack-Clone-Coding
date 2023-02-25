@@ -1,13 +1,18 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ConfigService } from '@nestjs/config/dist';
-import { LoggerMiddleware } from 'middlewares/logger.middleware';
+import { LoggerMiddleware } from 'src/middlewares/logger.middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { WorkspacesModule } from './workspaces/workspaces.module';
 import { ChannelsModule } from './channels/channels.module';
-import { DmsModule } from './dms/dms.module';
+import { DMsModule } from './dms/dms.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ChannelChats } from './entities/ChannelChats';
 import { ChannelMembers } from './entities/ChannelMembers';
@@ -18,7 +23,7 @@ import { Users } from './entities/Users';
 import { WorkspaceMembers } from './entities/WorkspaceMembers';
 import { Workspaces } from './entities/Workspaces';
 import { AuthModule } from './auth/auth.module';
-import { EventsModule } from './events/events.module';
+import { FrontendMiddleware } from './middlewares/fronted.middleware';
 
 @Module({
   imports: [
@@ -49,15 +54,18 @@ import { EventsModule } from './events/events.module';
     UsersModule,
     WorkspacesModule,
     ChannelsModule,
-    DmsModule,
+    DMsModule,
     AuthModule,
-    EventsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
+  configure(consumer: MiddlewareConsumer): void {
     consumer.apply(LoggerMiddleware).forRoutes('*');
+    // consumer.apply(FrontendMiddleware).forRoutes({
+    //   path: '/**',
+    //   method: RequestMethod.ALL,
+    // });
   }
 }
