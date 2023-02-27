@@ -27,7 +27,7 @@ try {
 
 @ApiTags('DMS')
 @Controller('api/workspaces/:url/dms')
-export class DmsController {
+export class DMsController {
   constructor(private dmsService: DMsService) {}
 
   @ApiOperation({ summary: '워크스페이스 DM 모두 가져오기' })
